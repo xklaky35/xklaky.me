@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/webStyle.css">
+    <title>Welcome</title>
+</head>
+<body>
+    <header>
+        <ul class="navBarTop">
+            <li class="navItem"><a href="index.html">HOME</a></li>
+            <li class="navItem"><a href="about.html">ABOUT</a></li>
+            <li class="navItem"><a href="quellen.html">QUELLEN</a></li>
+        </ul>
+    </header>
+    
+
+    
+
+
+    
+    <div id="buttonContainer">
+        <h1>Welcome <br> to <br> SHARK ATTACK!</h1>
+        <button id="playButton" onclick="window.location.href='game.html'">Play</button>
+    </div>
+    
+    <footer>
+        <ul class="foot">
+            <li id="getFiles">
+                Get Files
+            </li>
+        </ul>
+
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+            <div id="pswPop">
+                <p>Bitte Geben Sie die Zugangsdaten an </p>
+                <div class="PwdContainer">
+                    <div>
+                        <label for="uname"><b>Username</b></label>
+                        <input id="uname" type="text" placeholder="Mein Nachname (klein)" name="uname" required>
+                    </div>
+                    <div>
+                        <label for="psw"><b>Password</b></label>
+                        <input id="psw" type="password" placeholder="Mein Vorname (klein)" name="psw" required>
+                    </div>
+                    <button onclick="checkPw()" style="margin: 2em;">Login</button>
+                </div>
+            </div>
+          
+        </div>
+      </div>
+
+
+
+    </footer>
+    <script src="JS/gameloop.js"></script>
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("getFiles");
+        var span = document.getElementsByClassName("close")[0];
+
+    
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+    
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>

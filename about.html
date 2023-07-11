@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/webStyle.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <ul class="navBarTop">
+            <li class="navItem"><a href="index.html">HOME</a></li>
+            <li class="navItem"><a href="about.html">ABOUT</a></li>
+            <li class="navItem"><a href="quellen.html">QUELLEN</a></li>
+        </ul>
+    </header>
+
+    <div class="UMLBody">
+        <div class="UMLItem">
+            <div class="UMLText">
+                Player
+            </div>
+            <div class="UMLText">
+                <div style="margin: 5px;">PosX: int</div>
+                <div style="margin: 5px;">PosY: int</div>
+                <div style="margin: 5px;">anzRunden: int</div>
+                <div style="margin: 5px;">sprite: element</div>
+            </div>
+            <div class="UMLText">
+                <div style="margin: 5px;">getX(): int</div>
+                <div style="margin: 5px;">getY(): int</div>
+                <div style="margin: 5px;">setTurns(): void</div>
+                <div style="margin: 5px;">advanceTurns(): int</div>
+                <div style="margin: 5px;">move(PosX, PosY): void</div>
+                <div style="margin: 5px;">tryDirection(direction): bool</div>
+            </div>
+        </div>
+        <div class="UMLItem">
+            <div class="UMLText">
+                Enemy
+            </div>
+            <div class="UMLText">
+                <div style="margin: 5px;">PosX: int</div>
+                <div style="margin: 5px;">PosY: int</div>
+                <div style="margin: 5px;">sprite: element</div>
+            </div>
+            <div class="UMLText">
+                <div style="margin: 5px;">getX(): int</div>
+                <div style="margin: 5px;">getY(): int</div>
+                <div style="margin: 5px;">move(PosX, PosY): void</div>
+                <div style="margin: 5px;">tryDirection(direction): bool</div>
+                <div style="margin: 5px;">chatch(ally): void</div>
+            </div>
+        </div>
+        <div class="UMLItem">
+            <div class="UMLText">
+                Ally
+            </div>
+            <div class="UMLText">
+                <div style="margin: 5px;">PosX: int</div>
+                <div style="margin: 5px;">PosY: int</div>
+                <div style="margin: 5px;">sprite: element</div>
+            </div>
+            <div class="UMLText">
+                <div style="margin: 5px;">getX(): int</div>
+                <div style="margin: 5px;">getY(): int</div>
+                <div style="margin: 5px;">move(PosX, PosY): void</div>
+                <div style="margin: 5px;">tryDirection(direction): bool</div>
+                <div style="margin: 5px;">flee(enemy): void</div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <h1>Erstellung der Karte</h1>
+        <p>
+            Nach dem laden der Website wird ein leeres 2D Array angelegt. Sobald  der "Generate Map" Button gedrueckt wird, wird die Methode "generiereMap()" aufgerufen.
+            Dort wird das leere Array mit "div's" gefuellt, die direkt ihre Position im Array (i und j der for-Schleife) zugewiesen bekommen. Daraufhin werden mit generateImg() 
+            die Map Sprites in die erstellten div's eingefuegt: Es werden 2 zufaellige Zahlen generiert, generierte Position im Array wird ueberprueft, wenn noch kein Bild eingefuegt wurde,
+            generiere neues Bild, wenn schon, generiere neue Position. Das ganze so lange, bis alle Felder ein Sprite haben. Ein Problem dabei ist, dass man nun mehrmals 
+            durch das Array iteriert bzw. mehrmals auf die gleichen Felder in unterschiedlichen Durchlaeufen zugreift. Da aber eine bestimmte anzahl an Hindernissen im Feld sein soll
+            und keine zufaellige, habe ich diesen Ablauf getrennt. Daraufhin wird die Karte in die Datei eingefuegt.
+        </p>
+        <h1>Ablauf eines Zuges</h1>
+        <p>
+            Zu aller erst habe ich ein Dictionary fuer jede Richtung, die ein Element im Spielfeld gehen kann, angelegt. Dieses wird im Debug Modus durchlaufen und ueberprueft 
+            das Umfeld jedes Objekts und markiert die begehbaren Felder mit 'debug'. 
+            <br><br>
+            <b>Spieler:</b>
+            <br>
+            Nachdem man auf das Feld geklickt hat wird ueber die id die Position im Array ermittelt. Der Debug Modus wird kurz aktiviert um begehbare Felder zu markieren,
+            das ausgewaehlte Feld wird ueberprueft ob es begehbar ist, der Debug Modus wird deaktiviert. Sollte es begehbar sein wird der Spieler bewegt, wenn nicht tritt eine 
+            Meldung auf.
+            <br><br>
+            <b>Jaeger und Opfer:</b>
+            <br>
+            500 ms nach der Spielerbewegung wird die Methode 'chatch()' des Jaegers ausgefuert. In chatch() wird zuerst die Richting zum Opfer berechnet.
+            Diese Richtung wird dann mit 'tryDirection()' geprueft ob das Feld in der Richtung begehbar ist. Wenn ja  wird der Jaeger bewegt, wenn nein wird ein Dictionary mit alternativen
+            Richtungen durchlaufen bis ein Feld begehbar ist. Jedes Feld das betreten wurde wird markiert, dass es betreten wurde, sodass der Jaeger dieses Feld als Hindernis sieht.            
+            <br>
+            Danach wird die Methode 'flee()' des Opfers ausgefuert. Diese funktioniert im grundegenauso wie die 'chatch()'- Methode des Jaegers, nur mit dem Unterschied,
+            dass die Richtung zum Jaeger invertiert wird um in die entgegengesetzte zu laufen.
+            Der Algorithmus an sich ist der gleiche.
+            <br><br>
+            Das groeße Problem dieses Ablaufs ist, wenn eine Richtung nicht begehbar ist, geht jedes Objekt immer zuerst die gleiche alternative Richtung. Dies kann zu nicht optimalen
+            Richtungen fuehren. Dazu kommt, dass bereits betretene Felder nicht ein weiters mal betreten werden koennen, was zur Folge hat, dass ein Objekt sich einkesseln kann und dann
+            keine moeglichkeit hat weiter zu laufen. Dies tritt aber meisten nur bei einer hohen Anzahl an Hindernissen auf. Koennte ein Objekt das gleiche Feld nochmals betreten,
+            koennte ein unendlicher Loop aus den 2 gleichen Schritten entstehen.
+        </p>
+    </div>
+
+</body>
+</html>

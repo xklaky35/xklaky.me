@@ -1,0 +1,58 @@
+@font-face {
+    font-family: "Rubik+Iso";
+    src: url("../fonts/joystix\ monospace.otf") 
+}
+*{
+    font-family: 'Rubik+Iso';
+}
+#gameMap{
+    display: grid;
+    grid-template-columns: 3.5em 3.5em 3.5em 3.5em 3.5em 3.5em 3.5em 3.5em 3.5em 3.5em;
+    gap: 1px; 
+    align-items: center;
+    justify-content:center;
+    padding: 5%;
+}
+#gameMapContainer{
+    padding: 10px;
+    
+}
+#gameMap > div{
+    position: relative;
+    height: 3.5em;
+    width: 3.5em;
+    background: rgb(223, 30, 30);
+    overflow: hidden;
+}
+#gameMap > div > img{
+    position: absolute;
+    height: 3.5em;
+    width: 3.5em;
+}
+#gameMap > div > .flat:hover{
+    height: 3.9em;
+    width: 3.9em;
+    border: 1px solid black;
+    
+}
+.debug > img{
+    
+    object-fit: cover;
+    opacity: 0.7;
+}
+#UI{
+    margin-left: 0;
+    margin-right: 0;
+    border:  5px solid rgb(25, 102, 173);
+    background-color:rgba(75, 130, 211, 0.5);
+    
+}
+.timeContainer, .turnContainer, .nameContainer{
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    font-size: 2em;
+}
+.timeContainer{
+    text-align: center;
+    
+}

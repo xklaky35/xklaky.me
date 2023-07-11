@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/map.css">
+    <link rel="stylesheet" href="CSS/webStyle.css">
+    <title>Game</title>
+</head>
+<body>
+    <header>
+        <ul class="navBarTop">
+            <li class="navItem"><a href="index.html">HOME</a></li>
+            <li class="navItem"><a href="about.html">ABOUT</a></li>
+            <li class="navItem"><a href="quellen.html">QUELLEN</a></li>
+        </ul>
+    </header>
+    
+    <div class="UIContainer">
+        <div>
+            <div id="inputArea">
+                <div style="padding: 20px;">
+                    Name: <input id="name" type="text" placeholder="Your Name" size="30" required>
+                </div>
+                <div style="padding: 20px;">
+                    Anzahl Steine: <input  id="anzS" type="number" name="rocks" value="5" min="0" required>
+                </div>
+                <div style="padding: 20px;">
+                    Anzahl Baeume: <input id="anzB" type="number" name="tree" value="5" min="0" required>
+                </div>
+                <div style="padding: 20px; text-align: center;">
+                    <button id="startButton" class="Button" onclick="generateMap()" >Generate Map</button>  
+                    <button id="quitButton" class="Button" onclick="window.location.href='game.html'" >Change Settings</button>   
+                </div>
+            </div>
+        </div>
+
+        
+        <div id="gameEnd" class="modal">
+            <div class="modal-content">
+                <p id="EndScreen"></p>
+                <div>
+                    <button class="Button" onclick="window.location.href='game.html'" >Play Again</button>
+                    <button id="quitButton" class="Button" onclick="window.location.href='index.html'" >Quit Game</button>
+                </div>
+            </div>
+         </div>
+    
+        
+        <div id="UI">
+            <div id="gameMapContainer">
+                <div class="timeContainer">
+                    Time: 
+                    <div style="display: flex; padding-left: 2em;">
+                        <div id="minutes">0</div>
+                        :
+                        <div id="seconds">0</div>
+                    </div>
+                    
+                </div>
+                <br>
+                <div class="turnContainer">
+                    Turns:
+                    <div id="turns" style="padding-left: 2em;">0</div>
+                </div>
+                <br>
+                <div class="nameContainer">
+                    Name:
+                    <div id="nameField" style="padding-left: 2em;"></div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    
+
+<script src="JS/fieldGeneration.js"></script>
+<script src="JS/gameloop.js"></script>
+</body>
+</html> 
