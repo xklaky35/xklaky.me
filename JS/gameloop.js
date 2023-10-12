@@ -127,8 +127,8 @@ function gameEnd(){
 }
 function checkPw(){
 
-    if(document.getElementById("uname").value == "kaufmann" &&
-       document.getElementById("psw").value == "leon"){
+    if(document.getElementById("uname").value == "max" &&
+       document.getElementById("psw").value == "mustermann"){
 
             let download = document.createElement("a")
             download.setAttribute("href", "Download/Kaufmann_Leon.zip")
