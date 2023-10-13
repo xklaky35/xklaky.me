@@ -131,8 +131,8 @@ function checkPw(){
        document.getElementById("psw").value == "mustermann"){
 
             let download = document.createElement("a")
-            download.setAttribute("href", "Download/Kaufmann_Leon.zip")
-            download.setAttribute("download", "Kaufmann_Leon.zip")
+            download.setAttribute("href", "Download/SourceCode.zip")
+            download.setAttribute("download", "SourceCode.zip")
             download.innerHTML = "Get files here"
             document.getElementById("pswPop").appendChild(download)
        }
